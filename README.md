@@ -14,5 +14,6 @@ Steps to setup the backend environment:
 1. Go to frontend directory
 2. Run npm run dev
 3. Open it: http://localhost:3000/ to see the UI
+4. Make sure the backend server is also running
 
 ### Happy coding 🎉
