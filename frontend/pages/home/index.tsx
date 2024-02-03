@@ -1,35 +1,75 @@
-import * as React from "react";
-import { NextPage } from "next";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import { Button } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import Table from "../../components/table/table";
+import axios from "axios";
 
-const Home: NextPage = () => {
+const HomePage: React.FC = () => {
+  const [tableData, setTableData] = useState([]);
+  const [idData, setiddata] = useState([]);
 
-  const handleClick = async () => {
-    console.log("clicked");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:5001/tickets");
+      // const modifiedData = response.data.map(({ id }) => ({
+      //   id,
+      // }));
+      setTableData(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []); // Empty dependency array ensures the effect runs only once
+
+  const handleToggle = async (id: string) => {
+    // Make API request to update the status
+    try {
+      await axios.put(`http://localhost:5001/update_ticket_status/${id}`);
+      fetchData(); // Refetch data after updating
+    } catch (error) {
+      console.error("Error toggling status:", error);
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    // Make API request to delete the ticket
+    try {
+      await axios.put(`http://localhost:5001/remove_ticket/${id}`);
+      fetchData(); // Refetch data after deleting
+    } catch (error) {
+      console.error("Error deleting ticket:", error);
+    }
   };
 
   return (
-    <>
-      <Box sx={{ flexGrow: 1, mt: 15, mb: 15 }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleClick}
-                sx={{ width: "50%", height: "4rem", fontSize: "1.2rem" }}
-              >
-                Some other Button
-              </Button>
-            </Box>
-          </Grid>
-        </Grid>
-      </Box>
-    </>
+    <div>
+      <h1>Tickets</h1>
+      <table className="table">
+        <thead>
+          <tr>
+            <th className="cell">Message ID</th>
+            <th className="cell">Status</th>
+            <th className="cell">Resolved By</th>
+            <th className="cell">Timestamp</th>
+            <th className="cell">Context Messages</th>
+            <th className="cell">Change Status</th>
+            <th className="cell"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {tableData.map((row) => (
+            <Table
+              key={row.id}
+              row={row}
+              onToggle={handleToggle}
+              onDelete={handleDelete}
+            ></Table>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
-export default Home;
+export default HomePage;

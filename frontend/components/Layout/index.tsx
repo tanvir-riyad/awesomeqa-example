@@ -7,10 +7,8 @@ const Layout = ({ children }: JSX.ElementChildrenAttribute) => {
     <>
       <Container maxWidth="lg">
         <HomeHeader />
-        <>
-        {children}
-        </>
-        <Footer />
+        <>{children}</>
+        {/* <Footer /> */}
       </Container>
     </>
   );

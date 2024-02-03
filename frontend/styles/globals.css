@@ -14,3 +14,48 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.row {
+  border-bottom: 0.5px dotted #ddd;
+}
+
+.cell {
+  padding: 1rem;
+  text-align: left;
+}
+
+/* Add these styles to your existing CSS or styling solution */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  max-width: 180px; /* Set max-width instead of width */
+  white-space: pre-wrap; /* Preserve white spaces and wrap the text */
+  background-color: #3498db;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}

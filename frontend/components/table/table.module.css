@@ -1,0 +1,14 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.row {
+  border-bottom: 0.5px dotted #ddd;
+}
+
+.cell {
+  padding: 1rem;
+  text-align: left;
+}
