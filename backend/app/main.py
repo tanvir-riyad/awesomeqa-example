@@ -24,16 +24,6 @@ async def get_tickets(
     ticket_repository: TicketRepository = Depends(lambda: ticket_repository),
 ):
     tickets = ticket_repository.get_tickets(limit)
-    # formatted_ticket = [
-    #      {
-    #         "msg_id": ticket["msg_id"],
-    #         "status": ticket["status"],
-    #         "resolved_by": ticket["resolved_by"],
-    #         "timestamp": ticket["timestamp"],
-    #         "context_messages": ticket["context_messages"]
-    #     }
-    #     for ticket in tickets
-    # ]
     return JSONResponse(tickets, status_code=200)
 
 @app.put("/update_ticket_status/{id}")

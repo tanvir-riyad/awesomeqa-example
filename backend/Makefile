@@ -1,6 +1,6 @@
 # Set the name of the virtual environment
 VENV_NAME = .venv
-PYTHON_VERSION = 3
+PYTHON_VERSION = 3.10.4
 
 venv:
 	python$(PYTHON_VERSION) -m venv $(VENV_NAME)

@@ -3,17 +3,9 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Button } from "@mui/material";
-import { IconButton, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { MdLibraryBooks, MdLightbulbOutline } from "react-icons/md";
 import { FaHeadset } from "react-icons/fa6";
-
-// const Item = styled(Paper)(({ theme }) => ({
-//   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-//   ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: "center",
-//   color: theme.palette.text.secondary,
-// }));
 
 const IndexPage = () => {
   return (
@@ -69,7 +61,7 @@ const IndexPage = () => {
                   backgroundColor: "#1C1C1F",
                   color: "white",
                 }}
-                href="/"
+                href="/home"
               >
                 <div>
                   <div

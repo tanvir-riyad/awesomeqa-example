@@ -4,14 +4,11 @@ import axios from "axios";
 
 const HomePage: React.FC = () => {
   const [tableData, setTableData] = useState([]);
-  const [idData, setiddata] = useState([]);
+  // const [idData, setiddata] = useState([]);
 
   const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:5001/tickets");
-      // const modifiedData = response.data.map(({ id }) => ({
-      //   id,
-      // }));
       setTableData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -36,7 +33,7 @@ const HomePage: React.FC = () => {
     // Make API request to delete the ticket
     try {
       await axios.put(`http://localhost:5001/remove_ticket/${id}`);
-      fetchData(); // Refetch data after deleting
+      fetchData();
     } catch (error) {
       console.error("Error deleting ticket:", error);
     }
